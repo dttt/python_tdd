@@ -28,7 +28,7 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # He type in 'Buy peacock feathers' into the text box
-        inputbox.send_keys('Use peacock feathers')
+        inputbox.send_keys('Buy peacock feathers')
 
         # When he hits enter, the page update and add a new to-do item
         inputbox.send_keys(Keys.ENTER)
@@ -37,7 +37,7 @@ class NewVisitorTest(unittest.TestCase):
         rows = table.find_elements_by_tag_name('tr')
 
         self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
-        self.assertIn('2: Use peacock feathers', [row.text for row in rows])
+        #self.assertIn('2: Use peacock feathers', [row.text for row in rows])
 
         self.fail('Finish the test!')
 
