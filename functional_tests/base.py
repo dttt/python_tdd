@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-class NewVisitorTest(LiveServerTestCase):
+class FunctionalTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -15,6 +15,9 @@ class NewVisitorTest(LiveServerTestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertIn(row_text, [row.text for row in rows])
+
+
+class NewVisitorTest(FunctionalTest):
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         # User go to home page url
@@ -70,7 +73,8 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
 
-        self.fail('Finish the test!')
+
+class LayoutAndStylingTest(FunctionalTest):
 
     def test_layout_and_styling(self):
         self.browser.get(self.live_server_url)
@@ -90,3 +94,9 @@ class NewVisitorTest(LiveServerTestCase):
             512,
             delta=5
         )
+
+
+class ItemValidationTest(FunctionalTest):
+
+    def test_cannot_add_empty_list_items(self):
+        self.fail('write me!')
